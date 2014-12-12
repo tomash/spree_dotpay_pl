@@ -1,0 +1,31 @@
+<%- submit_url = payment_method.preferences[:dotpay_url] %>
+
+<%= form_tag submit_url do %> 
+  
+    <input id="id" name="id" type="hidden" value="<%= payment_method.preferences[:account_email] %>" />
+
+    <!--
+      From official Dotpay docs:
+      Wartości parametru typ (wartość -> sposób odniesienia do sklepu):
+      0 -> po dokonaniu płatności Kupującemu zostanie udostępniony guzik powrotu do serwisu
+      Sprzedawcy.
+      1 -> po dokonaniu płatności powstanie połączenie niejawne dla Kupującego. Na adres podany
+      w parametrze URL zostaną przesłane metodą POST dane przedstawione w Tabeli 4.
+      2 -> brak reakcji, nic nie jest wysyłane, brak guzika (wartość domyślna).
+      3 -> wykonane zostaną akcje dla typ=0 oraz typ=1 - czyli zarówno zostaną przesłane dane
+      z Tabeli 4 w połączeniu niejawnym (metodą POST), jak i wyświetlony zostanie przycisk powrotu
+      do serwisu Sprzedawcy. W przypadku korzystania z mechanizmu powiadomień URLC zbędne
+      jest korzystanie z niniejszej wartości.
+    -->
+  <input id="typ" name="typ" type="hidden" value="0" />
+
+  <input id="kwota" name="kwota" type="hidden" value="<%= @order.total.to_f %>" />
+  <input id="waluta" name="waluta" type="hidden" value="<%= payment_method.preferences[:currency] %>" />
+
+  <input id="URLC" name="URLC" type="hidden" value="<%#= dotpay_callbacks_url %>" />
+  <input id="URL" name="URL" type="hidden" value="<%= payment_method.preferences[:success_url] %>" />
+
+  <input id="charset" name="charset" type="hidden" value="utf-8" />
+  <%= submit_tag "pay with dotpay", :id => 'dotpay-submit' %>
+
+<% end -%>

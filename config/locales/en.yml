@@ -1,0 +1,6 @@
+--- 
+en:
+  spree:
+    dotpay_pl:
+      pay_with_dotpay: "Pay with Dotpay"
+      check_out_with_dotpay: "Check out with Dotpay"

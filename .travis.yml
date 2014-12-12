@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.1.4
+before_script:
+  - bundle exec rake test_app
+env:
+  - DB=sqlite
+script: "bundle exec rake spec"

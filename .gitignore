@@ -1,0 +1,14 @@
+\#*
+*~
+.#*
+*.gem
+Gemfile.lock
+.DS_Store
+.idea
+.project
+tmp
+nbproject
+*.swp
+spec/dummy
+.ruby-version
+.ruby-gemset

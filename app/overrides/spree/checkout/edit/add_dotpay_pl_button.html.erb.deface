@@ -1,0 +1,8 @@
+<!-- insert_bottom '[data-hook="checkout_form_wrapper"]' -->
+<div class="" id="dotpay-pl-payment" data-hook="dotpay-pl-button">
+  <% if(@order.state == "payment" && @order.payable_via_dotpay?) %>
+    <% method = Spree::Order.dotpay_payment_method %>
+    <%= render :partial => "spree/checkout/payment/#{method.method_type}", :locals => { :payment_method => method } %>
+  <% end %>
+</div>
+
